@@ -1,0 +1,66 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+#    druid:
+      driver-class-name: ${foodtime.datasource.driver-class-name}
+      url: jdbc:mysql://${foodtime.datasource.host}:${foodtime.datasource.port}/${foodtime.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${foodtime.datasource.username}
+      password: ${foodtime.datasource.password}
+  redis:
+    host: ${foodtime.redis.host}
+    database: ${foodtime.redis.database}
+    port: ${foodtime.redis.port}
+    password: ${foodtime.redis.password}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.foodtime.entity
+  configuration:
+    #开启驼峰命�?
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      foodtime:
+        mapper: debug
+        service: info
+        controller: info
+
+foodtime:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥（生产环境请通过环境变量JWT_ADMIN_SECRET覆盖）
+    admin-secret-key: ${JWT_ADMIN_SECRET:foodtime-admin-secret-2024}
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+
+
+    user-secret-key: ${JWT_USER_SECRET:foodtime-user-secret-2024}
+    user-ttl: 7200000
+    user-token-name: authentication
+  alioss:
+    endpoint: ${foodtime.alioss.endpoint}
+    bucket-name: ${foodtime.alioss.bucket-name}
+    access-key-id: ${foodtime.alioss.access-key-id}
+    access-key-secret: ${foodtime.alioss.access-key-secret}
+  wechat:
+    appid: ${foodtime.wechat.appid}
+    secret: ${foodtime.wechat.secret}
+  alipay:
+    app-id: ${foodtime.alipay.app-id}
+    app-private-key: ${foodtime.alipay.app-private-key}
+    alipay-public-key: ${foodtime.alipay.alipay-public-key}
+    notify-url: ${foodtime.alipay.notify-url}
+    gateway-url: ${foodtime.alipay.gateway-url}

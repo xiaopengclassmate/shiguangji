@@ -1,0 +1,32 @@
+# ==================== 配置模板 ====================
+# 将此文件复制为 application-dev.yml 并填写真实值后使用
+# application-dev.yml 已在 .gitignore 中排除，不会提交到 GitHub
+# ==================================================
+
+foodtime:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: <your-mysql-host>
+    port: 3306
+    database: foodtime
+    username: <your-mysql-username>
+    password: <your-mysql-password>
+  alioss:
+    endpoint: <your-oss-endpoint>
+    bucket-name: <your-oss-bucket-name>
+    access-key-id: <your-access-key-id>
+    access-key-secret: <your-access-key-secret>
+  redis:
+    host: <your-redis-host>
+    port: 6379
+    database: 0
+    password: <your-redis-password>
+  wechat:
+    appid: <your-wechat-appid>
+    secret: <your-wechat-secret>
+  alipay:
+    app-id: <your-alipay-app-id>
+    app-private-key: <your-alipay-app-private-key>
+    alipay-public-key: <your-alipay-public-key>
+    notify-url: http://localhost:8080/notify/paySuccess
+    gateway-url: https://openapi-sandbox.dl.alipaydev.com/gateway.do

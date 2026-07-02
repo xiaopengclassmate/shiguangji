@@ -1,0 +1,9 @@
+**/target/
+.idea
+*.iml
+*.class
+*Test.java
+**/test/
+# sensitive config
+**/application-dev.yml
+**/application-prod.yml
